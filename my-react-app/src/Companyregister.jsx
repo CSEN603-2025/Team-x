@@ -8,6 +8,7 @@ function CompanyRegister() {
     Industry: '',
     Email: '',
     Size: '',
+    Documents: '',
   });
 
   function setname(value) {
@@ -30,19 +31,30 @@ function CompanyRegister() {
     setCompany(prev => ({ ...prev, Size: value }));
   }
 
-  function handleFileUpload(event) {
+  function handlePhotoUpload(event) {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setlogo(imageUrl);
     }
   }
+function handleDocumentUpload(event) {
+  const file = event.target.files[0];
+  if (file) {
+    console.log("Uploaded PDF:", file.name);
+    setCompany(prev => ({ ...prev, Documents: file }));
+  }
+}
 
-  function handleSubmit() {
- 
+
+
+
+function handleSubmit() {
+  if (!company.Name || !company.Email || !company.Industry || !company.Size) {
+    alert("Please fill all required fields.");
+    return;
+  }
   console.log("Submitting company info:", company);
-
-  
 }
 
   return (
@@ -69,9 +81,9 @@ function CompanyRegister() {
               className={styles.input}
               type="file"
               accept="image/*"
-              onChange={handleFileUpload} />
+             onChange={handlePhotoUpload} />
           </div>
-
+        
           <input
             className={styles.input}
             type="text"
@@ -87,7 +99,18 @@ function CompanyRegister() {
                 className={styles.logoPreview} />
             </div>
           )}
+         <div>
+  <label>Upload Company Documents (PDF only):</label><br />
+  <input
+    className={styles.input}
+    type="file"
+    accept="application/pdf"
+    onChange={handleDocumentUpload}
+  />
+</div>
 
+        
+          
           <div>
             <label>Company Industry:</label><br />
             <input
@@ -125,12 +148,12 @@ function CompanyRegister() {
 
           </div>
 
-          <button className={styles.button} onClick={handleSubmit}>Reigster Now</button>
+         <button className={styles.button} onClick={handleSubmit}>Register Now</button>
+
 
         </div>
       </div></>
     
-  );
-}
+  );}
 
 export default CompanyRegister;
