@@ -1,0 +1,164 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  min-height: 5vh;
+  border-radius: 10px;
+}
+.hidden {
+  visibility: hidden;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.formCard {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+.checkboxContainer {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 6px;
+}
+
+.input {
+  width: 50%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ddd;
+}
+
+.siteLogo {
+  height: 50px;
+}
+
+.headerButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.headerBtn {
+  padding: 0.5rem 1rem;
+  background-color: #005aaa;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.headerBtn:hover {
+  background-color: #004080;
+}
+
+
+.button {
+  background-color: #ecf1f6;
+  color: rgb(1, 1, 1);
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 20px auto 0;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #011a35;
+  color: rgb(244, 241, 241);
+}
+
+.postList {
+  width: 100%;
+  max-width: 600px;
+}
+
+.postItem {
+  position: relative;
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.postButton {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  color: #333;
+}
+
+.menuWrapper {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.menuTrigger {
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+.dropdown {
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.dropdown button {
+  display: block;
+  padding: 10px 15px;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown button:hover {
+  background-color: #f0f0f0;
+}

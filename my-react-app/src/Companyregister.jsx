@@ -3,7 +3,7 @@ import styles from './CompanyRegister.module.css';
 import GUCLogo from './assets/GUC-logo.png';
 function CompanyRegister() {
   const [company, setCompany] = useState({
-    Name: '',
+    Name: '22w2w',
     Logo: '',
     Industry: '',
     Email: '',
@@ -22,7 +22,7 @@ function CompanyRegister() {
   function setindustry(value) {
     setCompany(prev => ({ ...prev, Industry: value }));
   }
-
+  
   function setemail(value) {
     setCompany(prev => ({ ...prev, Email: value }));
   }
@@ -60,7 +60,7 @@ function handleSubmit() {
   return (
    <><header className={styles.header}>
       <img src={GUCLogo} alt="GUC Logo" className={styles.siteLogo} />
-    </header><div className={styles.container}>
+    </header>
         <div className={styles.formCard}>
           <h1>Welcome to SCAD Internship Website</h1>
           <h2>Company Register</h2>
@@ -152,7 +152,7 @@ function handleSubmit() {
 
 
         </div>
-      </div></>
+      </>
     
   );}
 
