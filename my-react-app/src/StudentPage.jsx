@@ -12,6 +12,8 @@ function StudentPage() {
     const [evalTexts, setEvalTexts] = useState({});
     const [selectedReportInternship, setSelectedReportInternship] = useState('');
     const [reports, setReports] = useState({});
+    const [appealText, setAppealText] = useState('');
+
     const [reportInputs, setReportInputs] = useState({
     title: '',
     introduction: '',
@@ -44,7 +46,7 @@ function StudentPage() {
     company: 'CloudBridge Inc.',
     eval: ''
     ,
-    report:{title:'',introduction:'', body:''},status:'flagged'
+    report:{title:'',introduction:'', body:'',status:'flagged'}
   },
   {
     status: 'Completed',
@@ -54,7 +56,7 @@ function StudentPage() {
     company: 'AppFusion',
     eval: ''
     ,
-    report:{title:'',introduction:'', body:''},status:'accepted'
+    report:{title:'',introduction:'', body:'',status:'accepted'}
   },
   {
     status: 'Completed',
@@ -63,7 +65,7 @@ function StudentPage() {
     title: 'AI Research Intern',
     company: 'NeuroNet AI',
     eval: '',
-    report:{title:'',introduction:'', body:''},status:'accepted'
+    report:{title:'',introduction:'', body:'',status:'accepted'}
   },
   {
     status: 'Completed',
@@ -72,7 +74,7 @@ function StudentPage() {
     title: 'Web Developer Intern',
     company: 'BrightByte',
     eval: '',
-    report:{title:'',introduction:'', body:''},status:'accepted'
+    report:{title:'',introduction:'', body:'',status:'accepted'}
   }
 ]);
 
@@ -400,6 +402,40 @@ const filteredInternships = internships.filter((internship) => {
       
 
     </div>
+    {selectedReportInternship && (
+  <p>
+    Report Status: {
+      internships.find(internship => internship.title === selectedReportInternship)?.report?.status || 'N/A'
+    }
+  </p>
+)}
+
+{['rejected', 'flagged'].includes(
+  internships.find(i => i.title === selectedReportInternship)?.report?.status
+) && (
+  <div style={{ marginTop: 20 }}>
+    <p style={{ marginBottom: 5 }}>Appeal your report:</p>
+    <textarea
+      style={{ width: 400, height: 100 }}
+      value={appealText}
+      onChange={(e) => setAppealText(e.target.value)}
+      placeholder="Write your appeal here..."
+    />
+    <div>
+      <button
+        className={styles.submit}
+        style={{ marginTop: 10 }}
+        onClick={() => {
+          alert(`Appeal submitted: ${appealText}`);
+          setAppealText('');
+        }}
+      >
+        Submit Appeal
+      </button>
+    </div>
+  </div>
+)}
+
   </>
 )}
 
