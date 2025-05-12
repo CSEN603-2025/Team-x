@@ -1,0 +1,150 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #f4f4f4;   /* light grey */
+  min-height: 100vh;
+}
+
+.heading {
+  font-size: 1.5rem;
+  color: #011a35;               /* dark navy */
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.filtersSection,
+.section,
+.formSection {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;    /* white */
+  padding: 1.25rem;             /* similar to 20px */
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.button {
+  display: inline-block;
+  background-color: #ecf1f6;    /* very light blue */
+  color: #011a35;               /* dark navy */
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #011a35;    /* dark navy */
+  color: #f4f4f4;               /* off-white */
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+.headerButtons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.headerBtn {
+  padding: 8px 14px;
+  font-size: 14px;
+  background-color: #ecf1f6;
+  color: #011a35;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.headerBtn:hover {
+  background-color: #011a35;
+  color: #f4f4f4;
+}
+
+
+.listItem {
+  position: relative;
+  background-color: #ffffff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #005aaa;  /* medium blue */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.listItem:hover {
+  background-color: #f0f4fb;    /* very light blue tint */
+}
+
+.menuWrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.menuTrigger {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #011a35;
+}
+
+.dropdown {
+  position: absolute;
+  top: 1.75rem;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.dropdown button {
+  width: 100%;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  color: #011a35;
+  cursor: pointer;
+}
+
+.dropdown button:hover {
+  background-color: #f0f0f0;
+}
+
+.formSection textarea {
+  width: 100%;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  resize: vertical;
+}
