@@ -1,12 +1,14 @@
 .mainContainer {
     display: flex;
     flex-direction: column;
-    width: 1000px;
     align-items: center;
-    justify-content: center;
-   margin: 0px
-;
+    justify-content: flex-start;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto; /* ⬅ centers it horizontally */
+    padding: 0px;
 }
+
 
 .sliderContainer {
     display: flex;
@@ -15,6 +17,11 @@
     flex-direction: row;
     gap: 1.5rem; 
     margin-bottom: 1rem; 
+}
+
+.reportHeader{
+    display: flex;
+    flex-direction: row;
 }
 
 .reportContainer{

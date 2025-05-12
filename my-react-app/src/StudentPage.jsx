@@ -1,13 +1,22 @@
 import { useState } from 'react'
 import styles from './StudentPage.module.css'
+import jsPDF from 'jspdf';
 
 function StudentPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [render, setRender] = useState('');
     const [statusFilter, setStatusFilter] = useState('All');
     const [selectedDate, setSelectedDate] = useState('');
+    const [selectedCourses, setSelectedCourses] = useState({});
     const [visibleEvalTitles, setVisibleEvalTitles] = useState({});
     const [evalTexts, setEvalTexts] = useState({});
+    const [selectedReportInternship, setSelectedReportInternship] = useState('');
+    const [reports, setReports] = useState({});
+    const [reportInputs, setReportInputs] = useState({
+    title: '',
+    introduction: '',
+    body: ''
+    });
     const [internships, setInternships] = useState([
   {
     status: 'Current',
@@ -15,7 +24,8 @@ function StudentPage() {
     endDate: null,
     title: 'Frontend Developer Intern',
     company: 'TechNova Solutions',
-    eval: ''
+    eval: '',
+    report:{title:'',introduction:'', body:'',status:'pending'}
   },
   {
     status: 'Completed',
@@ -23,7 +33,8 @@ function StudentPage() {
     endDate: '2024-08-31',
     title: 'Software Engineering Intern',
     company: 'InnovateX Labs',
-    eval: ''
+    eval: '',report:{title:'',introduction:'', body:'',status:'rejected'}
+
   },
   {
     status: 'Completed',
@@ -32,6 +43,8 @@ function StudentPage() {
     title: 'Backend Developer Intern',
     company: 'CloudBridge Inc.',
     eval: ''
+    ,
+    report:{title:'',introduction:'', body:''},status:'flagged'
   },
   {
     status: 'Completed',
@@ -40,6 +53,8 @@ function StudentPage() {
     title: 'Mobile App Intern',
     company: 'AppFusion',
     eval: ''
+    ,
+    report:{title:'',introduction:'', body:''},status:'accepted'
   },
   {
     status: 'Completed',
@@ -47,7 +62,8 @@ function StudentPage() {
     endDate: '2023-05-10',
     title: 'AI Research Intern',
     company: 'NeuroNet AI',
-    eval: ''
+    eval: '',
+    report:{title:'',introduction:'', body:''},status:'accepted'
   },
   {
     status: 'Completed',
@@ -55,9 +71,93 @@ function StudentPage() {
     endDate: '2022-08-30',
     title: 'Web Developer Intern',
     company: 'BrightByte',
-    eval: ''
+    eval: '',
+    report:{title:'',introduction:'', body:''},status:'accepted'
   }
 ]);
+
+function handleDownloadPDF() {
+  const { title, introduction, body } = reportInputs;
+  const doc = new jsPDF();
+
+  doc.setFontSize(18);
+  doc.text(title || 'Internship Report', 10, 20);
+
+  doc.setFontSize(14);
+  doc.text('Introduction:', 10, 40);
+  doc.setFontSize(12);
+  doc.text(doc.splitTextToSize(introduction || '', 180), 10, 50);
+
+  const bodyStartY = 50 + doc.splitTextToSize(introduction || '', 180).length * 10 + 10;
+  doc.setFontSize(14);
+  doc.text('Body:', 10, bodyStartY);
+  doc.setFontSize(12);
+  doc.text(doc.splitTextToSize(body || '', 180), 10, bodyStartY + 10);
+
+  doc.save(`${title || 'Internship_Report'}.pdf`);
+}
+
+function handleReportInputChange(field, value) {
+  setReportInputs(prev => ({
+    ...prev,
+    [field]: value
+  }));
+}
+
+function handleSaveReport() {
+  if (selectedReportInternship) {
+    
+    setInternships(prev => 
+      prev.map(internship =>
+        internship.title === selectedReportInternship
+          ? { 
+              ...internship, 
+              report: { 
+                title: reportInputs.title, 
+                introduction: reportInputs.introduction, 
+                body: reportInputs.body 
+              }
+            }
+          : internship
+      )
+    );
+    alert('Report saved!');
+  }
+}
+
+
+
+
+function handleDeleteReport() {
+  if (selectedReportInternship) {
+    setReports(prev => {
+      const updated = { ...prev };
+      delete updated[selectedReportInternship];
+      return updated;
+    });
+    setReportInputs({ title: '', introduction: '', body: '' });
+    alert('Report deleted!');
+  }
+}
+
+function handleInternshipSelect(e) {
+  const internshipTitle = e.target.value;
+  setSelectedReportInternship(internshipTitle);
+
+  const selectedInternship = internships.find(internship => internship.title === internshipTitle);
+  if (selectedInternship && selectedInternship.report) {
+    setReportInputs(selectedInternship.report); 
+  } else {
+    setReportInputs({ title: '', introduction: '', body: '' });
+}
+}
+
+  function handleToggle(course) {
+  setSelectedCourses(prev => ({
+    ...prev,
+    [course]: !prev[course]
+  }));
+}
 
   
   const toggleEvalVisibility = (title) => {
@@ -244,18 +344,68 @@ const filteredInternships = internships.filter((internship) => {
   </div>
 )}
 
-    {render === 'report' && <div className={styles.reportContainer}>
-      <p className={styles.paragraph}>During my internship at TechNova Solutions as a Frontend Developer Intern, 
-        I had the opportunity to work on several real-world web development projects using React.js. 
-        The experience significantly enhanced my understanding of component-based architecture and responsive design. 
-        I collaborated with a cross-functional team of developers and designers, which improved my communication skills and taught me the importance of version control with Git. 
-        One of the highlights of the internship was contributing to a live product feature that is now used by real customers. 
-        Overall, this internship not only helped me apply the concepts I learned in my university courses but also gave me confidence
-         in my ability to work in a professional software development environment.</p>
+  {render === 'report' && (
+  <div className={styles.reportContainer}>
+    <div className={styles.reportHeader}>
+      <p style={{ fontSize: 20 }}>Please select an internship to report</p>
+      <select
+        className={styles.dropdown}
+        value={selectedReportInternship}
+        onChange={handleInternshipSelect}
+      >
+        <option value="">Select Internship</option>
+        {internships.map((internship, index) => (
+          <option key={index} value={internship.title}>
+            {internship.title}
+          </option>
+        ))}
+      </select>
+    </div>
 
-         <button className={styles.submit}>Submit</button>
-      </div>
-      }
+    {selectedReportInternship && (
+  <>
+    <div className={styles.reportStructure}>
+      <p>Title:</p>
+      <textarea
+      style={{height:30, width:200}}
+        value={reportInputs.title}
+        onChange={(e) => handleReportInputChange('title', e.target.value)}
+        placeholder={reportInputs.title }
+      />
+      <p>Introduction:</p>
+      <textarea
+      style={{height:100, width:400}}
+        value={reportInputs.introduction}
+        onChange={(e) => handleReportInputChange('introduction', e.target.value)}
+        placeholder={reportInputs.introduction }
+      />
+      <p >Body:</p>
+      <textarea
+      style={{height:250, width:600}}
+        value={reportInputs.body}
+        onChange={(e) => handleReportInputChange('body', e.target.value)}
+        placeholder={reportInputs.body }
+      />
+    </div>
+    <div>
+      <button className={styles.submit} style={{marginRight:10}}onClick={handleSaveReport}>
+        Save
+      </button>
+      <button className={styles.submit} onClick={handleDownloadPDF}>
+      Download as PDF
+      </button>
+      <button className={styles.delete} onClick={handleDeleteReport}>
+        Delete
+      </button>
+      
+
+    </div>
+  </>
+)}
+
+  </div>
+)}
+
     </div>
   )
 }
