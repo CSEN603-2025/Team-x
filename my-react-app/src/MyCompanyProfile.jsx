@@ -216,123 +216,139 @@ const handleAddNewIntern = (internshipId) => {
     );
 
   return (
-    <div className={styles.container}>
-        {/* Top-right header buttons */}
-  <div className={styles.headerButtons}>
-    <button className={styles.headerBtn}>Settings</button>
-    <button className={styles.headerBtn}>Log Out</button>
-  </div>
+   <div className={styles.container}>
+  {/* Header Section */}
+  <header className={styles.header}>
+    <h1 className={styles.heading}>Company Dashboard</h1>
+    <div className={styles.headerButtons}>
+      <button className={styles.headerBtn}>Settings</button>
+      <button className={styles.headerBtn}>Log Out</button>
+    </div>
+  </header>
 
-      <h1 className={styles.heading}>Company Dashboard</h1>
-
-      <div className={styles.filtersSection}>
+  {/* Main Content Area */}
+  <div className={styles.mainContent}>
+    {/* Left Column */}
+    <div className={styles.leftColumn}>
+      {/* Filters Section */}
+      <section className={styles.section}>
         <h2>Filter Internships</h2>
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={internshipSearch}
-          onChange={(e) => setInternshipSearch(e.target.value)}
-          className={styles.input}
-        />
-        <select
-          value={internshipIndustryFilter}
-          onChange={(e) => setInternshipIndustryFilter(e.target.value)}
-          className={styles.input}
-        >
-          <option value="">All Industries</option>
-          <option value="Software">Software</option>
-          <option value="Marketing">Marketing</option>
-          <option value="Design">Design</option>
-        </select>
-      </div>
+        <div className={styles.filterControls}>
+          <input
+            type="text"
+            placeholder="Search by title..."
+            value={internshipSearch}
+            onChange={(e) => setInternshipSearch(e.target.value)}
+            className={styles.input}
+          />
+          <select
+            value={internshipIndustryFilter}
+            onChange={(e) => setInternshipIndustryFilter(e.target.value)}
+            className={styles.input}
+          >
+            <option value="">All Industries</option>
+            <option value="Software">Software</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Design">Design</option>
+          </select>
+        </div>
+      </section>
 
-      <div className={styles.section}>
+      {/* Internship Posts Section */}
+      <section className={styles.section}>
         <h2>My Internship Posts</h2>
-        <ul className={styles.list}>
+        <div className={styles.internshipList}>
           {filteredInternships.map(post => (
-            <li key={post.id} className={styles.listItem}>
-              <strong>{post.title}</strong> ({post.industry}) — {post.duration} — {post.paid ? 'Paid' : 'Unpaid'}<br />
-              Applications: {post.applications.length}<br />
-              <button
-  onClick={() => {
-    setShowAddInternForm(post.id);
-    setNewInternData({
-      applicantName: '',
-      title: post.title,
-      status: 'pending',
-      jobInterests: [],
-      college: '',
-      collegeActivities: [],
-      previousExperience: []
-    });
-  }}
-  className={styles.button}
->
-  Add New Intern
-</button>
-{showAddInternForm === post.id && (
-  <div className={styles.formSection}>
-    <input
-      type="text"
-      placeholder="Name"
-      value={newInternData.applicantName}
-      onChange={(e) => setNewInternData({ ...newInternData, applicantName: e.target.value })}
-      className={styles.input}
-    />
-    <input
-      type="text"
-      placeholder="College"
-      value={newInternData.college}
-      onChange={(e) => setNewInternData({ ...newInternData, college: e.target.value })}
-      className={styles.input}
-    />
-    <input
-      type="text"
-      placeholder="College Activities (comma separated)"
-      value={newInternData.collegeActivities.join(', ')}
-      onChange={(e) => setNewInternData({ ...newInternData, collegeActivities: e.target.value.split(',').map(x => x.trim()) })}
-      className={styles.input}
-    />
-    <input
-      type="text"
-      placeholder="Job Interests (comma separated)"
-      value={newInternData.jobInterests.join(', ')}
-      onChange={(e) => setNewInternData({ ...newInternData, jobInterests: e.target.value.split(',').map(x => x.trim()) })}
-      className={styles.input}
-    />
-    <textarea
-      placeholder="Previous Experience (format: role@company@duration@responsibilities, one per line)"
-      onChange={(e) => {
-        const parsed = e.target.value
-          .split('\n')
-          .map(line => {
-            const [role, company, duration, responsibilities] = line.split('@');
-            return { role, company, duration, responsibilities };
-          });
-        setNewInternData({ ...newInternData, previousExperience: parsed });
-      }}
-      className={styles.input}
-    />
-    <button
-      onClick={() => submitNewIntern(post.id)}
-      className={styles.button}
-    >
-      Submit Intern
-    </button>
-  </div>
-)}
+            <div key={post.id} className={styles.internshipCard}>
+              <div className={styles.internshipHeader}>
+                <h3>{post.title}</h3>
+                <span className={styles.internshipMeta}>{post.industry} • {post.duration} • {post.paid ? 'Paid' : 'Unpaid'}</span>
+                <span className={styles.applicationsCount}>{post.applications.length} applications</span>
+              </div>
 
+              <div className={styles.internshipActions}>
+                <button
+                  onClick={() => {
+                    setShowAddInternForm(post.id);
+                    setNewInternData({
+                      applicantName: '',
+                      title: post.title,
+                      status: 'pending',
+                      jobInterests: [],
+                      college: '',
+                      collegeActivities: [],
+                      previousExperience: []
+                    });
+                  }}
+                  className={styles.button}
+                >
+                  Add New Intern
+                </button>
 
-              <button
-                onClick={() => setExpandedInternshipId(expandedInternshipId === post.id ? null : post.id)}
-                className={styles.button}
-              >
-                {expandedInternshipId === post.id ? 'Hide Applications' : 'View Applications'}
-              </button>
+                <button
+                  onClick={() => setExpandedInternshipId(expandedInternshipId === post.id ? null : post.id)}
+                  className={styles.button}
+                >
+                  {expandedInternshipId === post.id ? 'Hide' : 'View'} Applications
+                </button>
+              </div>
 
+              {/* Add Intern Form */}
+              {showAddInternForm === post.id && (
+                <div className={styles.formSection}>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    value={newInternData.applicantName}
+                    onChange={(e) => setNewInternData({ ...newInternData, applicantName: e.target.value })}
+                    className={styles.input}
+                  />
+                  <input
+                    type="text"
+                    placeholder="College"
+                    value={newInternData.college}
+                    onChange={(e) => setNewInternData({ ...newInternData, college: e.target.value })}
+                    className={styles.input}
+                  />
+                  <input
+                    type="text"
+                    placeholder="College Activities (comma separated)"
+                    value={newInternData.collegeActivities.join(', ')}
+                    onChange={(e) => setNewInternData({ ...newInternData, collegeActivities: e.target.value.split(',').map(x => x.trim()) })}
+                    className={styles.input}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Job Interests (comma separated)"
+                    value={newInternData.jobInterests.join(', ')}
+                    onChange={(e) => setNewInternData({ ...newInternData, jobInterests: e.target.value.split(',').map(x => x.trim()) })}
+                    className={styles.input}
+                  />
+                  <textarea
+                    placeholder="Previous Experience (format: role@company@duration@responsibilities, one per line)"
+                    onChange={(e) => {
+                      const parsed = e.target.value
+                        .split('\n')
+                        .map(line => {
+                          const [role, company, duration, responsibilities] = line.split('@');
+                          return { role, company, duration, responsibilities };
+                        });
+                      setNewInternData({ ...newInternData, previousExperience: parsed });
+                    }}
+                    className={styles.input}
+                  />
+                  <button
+                    onClick={() => submitNewIntern(post.id)}
+                    className={styles.button}
+                  >
+                    Submit Intern
+                  </button>
+                </div>
+              )}
+
+              {/* Applications List */}
               {expandedInternshipId === post.id && (
-                <>
-                
+                <div className={styles.applicationsSection}>
                   <select
                     value={applicationFilter}
                     onChange={(e) => setApplicationFilter(e.target.value)}
@@ -346,177 +362,192 @@ const handleAddNewIntern = (internshipId) => {
                     <option value="current intern">Current Intern</option>
                     <option value="internship complete">Internship Complete</option>
                   </select>
-                  <ul className={styles.list}>
+
+                  <div className={styles.applicationsList}>
                     {post.applications
                       .filter(app => !applicationFilter || app.status === applicationFilter)
                       .map((app, idx) => (
-                        <li key={idx} className={styles.listItem}>
-                          {app.applicantName} — Status: {app.status}
-                          
-                          <button
-                            onClick={() => setSelectedApplication({
-                              ...app,
-                              internshipId: post.id,
-                              ...detailedApplications[app.applicantName]
-                            })}
-                            className={styles.button}
-                          >
-                            View Details
-                          </button>
-                          <div className={styles.menuContainer}>
-  <button onClick={() => toggleMenu(app.applicantName)} className={styles.menuButton}>⋯</button>
-  {openMenu === app.applicantName && (
-    <div className={styles.dropdownMenu}>
-      <button onClick={() => handleEditApplication(app)}>Edit</button>
-      <button onClick={() => handleDeleteApplication(post.id, app.applicantName)}>Delete</button>
-    </div>
-  )}
-</div>
-
-                        </li>
-                        
+                        <div key={idx} className={styles.applicationCard}>
+                          <div className={styles.applicationInfo}>
+                            <span className={styles.applicantName}>{app.applicantName}</span>
+                            <span className={styles.applicationStatus}>{app.status}</span>
+                          </div>
+                          <div className={styles.applicationActions}>
+                            <button
+                              onClick={() => setSelectedApplication({
+                                ...app,
+                                internshipId: post.id,
+                                ...detailedApplications[app.applicantName]
+                              })}
+                              className={styles.button}
+                            >
+                              View Details
+                            </button>
+                            <div className={styles.menuContainer}>
+                              <button onClick={() => toggleMenu(app.applicantName)} className={styles.menuButton}>⋯</button>
+                              {openMenu === app.applicantName && (
+                                <div className={styles.dropdownMenu}>
+                                  <button onClick={() => handleEditApplication(app)}>Edit</button>
+                                  <button onClick={() => handleDeleteApplication(post.id, app.applicantName)}>Delete</button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       ))}
-                      
-                  </ul>
-                  
-                </>
+                  </div>
+                </div>
               )}
-            </li>
+            </div>
           ))}
-        </ul>
-      </div>
-
-      {selectedApplication && (
-        <div className={styles.section}>
-          <h2>Application Details</h2>
-          <h3>Evaluation</h3>
-<textarea
-  placeholder="Write evaluation..."
-  value={selectedApplication.evaluation || ''}
-  onChange={(e) => {
-    const updated = { ...selectedApplication, evaluation: e.target.value };
-    setSelectedApplication(updated);
-
-    setInternships(internships.map(post =>
-      post.id === selectedApplication.internshipId
-        ? {
-            ...post,
-            applications: post.applications.map(app =>
-              app.applicantName === selectedApplication.applicantName
-                ? { ...app, evaluation: e.target.value }
-                : app
-            )
-          }
-        : post
-    ));
-  }}
-  className={styles.input}
-/>
-
-          <p><strong>Name:</strong> {selectedApplication.applicantName}</p>
-          <p><strong>Status:</strong> {selectedApplication.status}</p>
-
-          <h3>Job Interests</h3>
-          <ul>
-            {selectedApplication.jobInterests?.map((interest, idx) => (
-              <li key={idx}>{interest}</li>
-            ))}
-          </ul>
-
-          <h3>Previous Experience</h3>
-          <ul>
-            {selectedApplication.previousExperience?.map((exp, idx) => (
-              <li key={idx}>
-                <strong>{exp.role}</strong> at {exp.company} ({exp.duration})<br />
-                Responsibilities: {exp.responsibilities}
-              </li>
-            ))}
-          </ul>
-
-          <h3>College Activities</h3>
-          <ul>
-            {selectedApplication.collegeActivities?.map((activity, idx) => (
-              <li key={idx}>{activity}</li>
-            ))}
-          </ul>
-
-          <div className={styles.buttonGroup}>
-            <button onClick={() => handleStatusChange('finalized')} className={styles.button}>Finalize</button>
-            <button onClick={() => handleStatusChange('accepted')} className={styles.button}>Accept</button>
-            <button onClick={() => handleStatusChange('rejected')} className={styles.button}>Reject</button>
-            <button onClick={() => handleStatusChange('current intern')} className={styles.button}>Set as Current Intern</button>
-            <button onClick={() => handleStatusChange('internship complete')} className={styles.button}>Mark as Complete</button>
-          </div>
         </div>
+      </section>
+    </div>
+
+    {/* Right Column */}
+    <div className={styles.rightColumn}>
+      {/* Application Details Section */}
+      {selectedApplication && (
+        <section className={styles.section}>
+          <h2>Application Details</h2>
+          <div className={styles.applicationDetails}>
+            <div className={styles.detailSection}>
+              <h3>Basic Information</h3>
+              <p><strong>Name:</strong> {selectedApplication.applicantName}</p>
+              <p><strong>Status:</strong> {selectedApplication.status}</p>
+            </div>
+
+            <div className={styles.detailSection}>
+              <h3>Evaluation</h3>
+              <textarea
+                placeholder="Write evaluation..."
+                value={selectedApplication.evaluation || ''}
+                onChange={(e) => {
+                  const updated = { ...selectedApplication, evaluation: e.target.value };
+                  setSelectedApplication(updated);
+                  setInternships(internships.map(post =>
+                    post.id === selectedApplication.internshipId
+                      ? {
+                          ...post,
+                          applications: post.applications.map(app =>
+                            app.applicantName === selectedApplication.applicantName
+                              ? { ...app, evaluation: e.target.value }
+                              : app
+                          )
+                        }
+                      : post
+                  ));
+                }}
+                className={styles.textarea}
+              />
+            </div>
+
+            <div className={styles.detailSection}>
+              <h3>Job Interests</h3>
+              <ul className={styles.skillsList}>
+                {selectedApplication.jobInterests?.map((interest, idx) => (
+                  <li key={idx}>{interest}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.detailSection}>
+              <h3>Previous Experience</h3>
+              <ul className={styles.experienceList}>
+                {selectedApplication.previousExperience?.map((exp, idx) => (
+                  <li key={idx}>
+                    <strong>{exp.role}</strong> at {exp.company} ({exp.duration})<br />
+                    <span className={styles.responsibilities}>{exp.responsibilities}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.detailSection}>
+              <h3>College Activities</h3>
+              <ul className={styles.activitiesList}>
+                {selectedApplication.collegeActivities?.map((activity, idx) => (
+                  <li key={idx}>{activity}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.statusButtons}>
+              <button onClick={() => handleStatusChange('finalized')} className={styles.statusButton}>Finalize</button>
+              <button onClick={() => handleStatusChange('accepted')} className={styles.statusButton}>Accept</button>
+              <button onClick={() => handleStatusChange('rejected')} className={styles.statusButton}>Reject</button>
+              <button onClick={() => handleStatusChange('current intern')} className={styles.statusButton}>Set as Current</button>
+              <button onClick={() => handleStatusChange('internship complete')} className={styles.statusButton}>Mark Complete</button>
+            </div>
+          </div>
+        </section>
       )}
 
-      <div className={styles.section}>
-  <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', marginBottom: '20px' }}>
-    <button className={styles.button} onClick={() => setActiveView('all')}>View All Applications</button>
-    <button className={styles.button} onClick={() => setActiveView('current')}>Current Interns</button>
-    <button className={styles.button} onClick={() => setActiveView('completed')}>Completed Internships</button>
-  </div>
+      {/* All Applications View */}
+      <section className={styles.section}>
+        <div className={styles.viewControls}>
+          <button className={styles.viewButton} onClick={() => setActiveView('all')}>All Applications</button>
+          <button className={styles.viewButton} onClick={() => setActiveView('current')}>Current Interns</button>
+          <button className={styles.viewButton} onClick={() => setActiveView('completed')}>Completed</button>
+        </div>
 
-  <h2>
-    {activeView === 'all' && 'All Applications'}
-    {activeView === 'current' && 'Current Interns'}
-    {activeView === 'completed' && 'Completed Internships'}
-  </h2>
+        <h2>
+          {activeView === 'all' && 'All Applications'}
+          {activeView === 'current' && 'Current Interns'}
+          {activeView === 'completed' && 'Completed Internships'}
+        </h2>
 
-  <input
-    type="text"
-    placeholder="Search by name or job title..."
-    value={internSearch}
-    onChange={(e) => setInternSearch(e.target.value)}
-    className={styles.input}
-  />
-  <select
-    value={internStatusFilter}
-    onChange={(e) => setInternStatusFilter(e.target.value)}
-    className={styles.input}
-  >
-    <option value="">All Statuses</option>
-    <option value="pending">Pending</option>
-    <option value="finalized">Finalized</option>
-    <option value="accepted">Accepted</option>
-    <option value="rejected">Rejected</option>
-    <option value="current intern">Current Intern</option>
-    <option value="internship complete">Internship Complete</option>
-  </select>
+        <div className={styles.viewFilters}>
+          <input
+            type="text"
+            placeholder="Search by name or job title..."
+            value={internSearch}
+            onChange={(e) => setInternSearch(e.target.value)}
+            className={styles.input}
+          />
+          <select
+            value={internStatusFilter}
+            onChange={(e) => setInternStatusFilter(e.target.value)}
+            className={styles.input}
+          >
+            <option value="">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="finalized">Finalized</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+            <option value="current intern">Current Intern</option>
+            <option value="internship complete">Internship Complete</option>
+          </select>
+        </div>
 
-  <ul className={styles.list}>
-    {displayedInterns
-      .filter(app => {
-        // View filter
-        if (activeView === 'current') return app.status === 'current intern';
-        if (activeView === 'completed') return app.status === 'internship complete';
-        return true; // All
-      })
-      .filter(app => {
-        // Text search
-        const search = internSearch.toLowerCase();
-        return (
-          !internSearch ||
-          app.applicantName.toLowerCase().includes(search) ||
-          app.title.toLowerCase().includes(search)
-        );
-      })
-      .filter(app => {
-        // Status dropdown filter
-        return !internStatusFilter || app.status === internStatusFilter;
-      })
-      .map((app, idx) => (
-        <li key={idx}>{app.applicantName} — {app.title} — {app.status}</li>
-      ))
-    }
-  </ul>
-</div>
-
-
-
-
+        <div className={styles.applicationsOverview}>
+          {displayedInterns
+            .filter(app => {
+              if (activeView === 'current') return app.status === 'current intern';
+              if (activeView === 'completed') return app.status === 'internship complete';
+              return true;
+            })
+            .filter(app => {
+              const search = internSearch.toLowerCase();
+              return (
+                !internSearch ||
+                app.applicantName.toLowerCase().includes(search) ||
+                app.title.toLowerCase().includes(search)
+              );
+            })
+            .filter(app => !internStatusFilter || app.status === internStatusFilter)
+            .map((app, idx) => (
+              <div key={idx} className={styles.overviewCard}>
+                <span className={styles.overviewName}>{app.applicantName}</span>
+                <span className={styles.overviewTitle}>{app.title}</span>
+                <span className={styles.overviewStatus}>{app.status}</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
     </div>
-  );
-}
+  </div>
+</div>);}
 
 export default MyCompanyProfile;

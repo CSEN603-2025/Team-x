@@ -6,6 +6,7 @@ import JobPostManager from './JobPostManager.jsx'
 import CompanyRegister from './companyregister.jsx'
 import MyProfile from './MyProfile.jsx'
 import MyCompanyProfile from './MyCompanyProfile.jsx'
+import ScadOffice from './ScadOffice.jsx'
 
 createRoot(document.getElementById('root')).render(
 
