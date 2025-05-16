@@ -7,9 +7,11 @@ import CompanyRegister from './companyregister.jsx'
 import MyProfile from './MyProfile.jsx'
 import MyCompanyProfile from './MyCompanyProfile.jsx'
 import ScadOffice from './ScadOffice.jsx'
+import StudentCall from './StudentCall.jsx'
+
 
 createRoot(document.getElementById('root')).render(
 
-    <MyCompanyProfile />
+    <StudentCall />
 
 )

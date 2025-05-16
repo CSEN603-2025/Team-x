@@ -88,6 +88,7 @@ const [showMyInternships, setShowMyInternships] = useState(false);
           <button className={styles.headerBtn}>Log Out</button>
         </div>
       </header>
+      
 
       <div className={styles.profileContainer}>
         <h1>My Profile</h1>

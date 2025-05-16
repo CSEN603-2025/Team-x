@@ -98,6 +98,25 @@
   background-color: #011a35;
   color: rgb(244, 241, 241);
 }
+.button1{
+  background-color: #ecf1f6;
+  color: rgb(1, 1, 1);
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 80px auto 0;
+  transition: background-color 0.3s ease;
+}
+
+.button1:hover {
+  background-color: #011a35;
+  color: rgb(244, 241, 241);
+}
 
 .postList {
   width: 100%;

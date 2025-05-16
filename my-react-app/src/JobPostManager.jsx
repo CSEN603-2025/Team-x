@@ -155,7 +155,7 @@ function JobPostManager() {
           onChange={handleChange}
           placeholder="Job Description"
         />
-        <button className={styles.button} onClick={handleSubmit}>
+        <button className={styles.button1} onClick={handleSubmit}>
           {editingIndex !== null ? 'Update Post' : 'Create Post'}
         </button>
       </div>

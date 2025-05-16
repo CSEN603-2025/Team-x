@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import styles from './ScadOffice.module.css';
 
+
+import YouTubeVideoPlayer from './Components/YouTubeVideoPlayer';
+  
+   
+
+
 function ScadOffice() {
   // Dummy data
   const initialStudents = [
@@ -130,7 +136,7 @@ function ScadOffice() {
           </ul>
         </div>
       </section>
-
+            
       {/* Middle column - Reports */}
       <section className={`${styles.section} ${styles.reportsSection}`}>
         <div className={styles.sectionHeader}>
@@ -274,7 +280,10 @@ function ScadOffice() {
       
       </section>
     </main>
+
+
   </div>
+  
 );
 }
 
