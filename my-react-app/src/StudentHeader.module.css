@@ -1,0 +1,58 @@
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px;
+    position: relative;
+}
+
+.notificationContainer{
+    position: absolute;
+    right: 0;
+    top:70px;
+    border: 1px solid black;
+    padding: 10px;
+    background-color: rgb(214, 214, 214);
+}
+
+.leftSection{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+}
+
+.notification{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+}
+.notification:last-child{
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.proText {
+  background: linear-gradient(135deg, rgb(241, 9, 9), rgb(213, 16, 227), rgb(208, 215, 208));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 40px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-left: -80px;
+}
+
+.notificationIcon{
+    width: 40px;
+    height: auto;
+}
+
+.notificationCount{
+    background-color: red;
+    color: white;
+    border-radius: 50px;
+    padding: 2px 7px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}

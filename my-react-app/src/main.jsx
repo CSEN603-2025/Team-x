@@ -1,10 +1,13 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
+import StudentPage from './StudentPage.jsx'
+import StudentHeader from './StudentHeader.jsx'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
+    <>
+        <StudentHeader/>
+        <StudentPage/>
+
+    </>
+    
 )

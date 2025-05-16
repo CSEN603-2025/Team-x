@@ -1,0 +1,167 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto; /* ⬅ centers it horizontally */
+    padding: 0px;
+}
+
+
+.sliderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    gap: 1.5rem; 
+    margin-bottom: 1rem; 
+}
+
+.reportHeader{
+    display: flex;
+    flex-direction: row;
+}
+
+.reportContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.filterAndSearch{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+select{
+height: 50px;
+width: 20px;
+margin-bottom:50PX ;
+margin-left: 10px;
+border-radius: 50px;
+padding: 0px;
+}
+
+.internship{
+    border-bottom:solid 0.2px black ;
+    width: 600px;
+    position: relative;
+}
+
+.internship:hover{
+    cursor: pointer;
+}
+
+.internship:last-child{
+    border: 0;
+}
+
+
+.detailContainer,.statusContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 100px;
+    margin: 0px;
+}
+.detailContainer p{
+    font-size: 20px;
+}
+
+.pageTitle{
+    font-size: 50px;
+   
+}
+
+.selector,.submit{
+    background-color: white;
+    border: 1px black solid;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color ease-in 0.1s;
+}
+.selector:hover,.submit:hover{
+    cursor: pointer;
+    color: white;
+    background-color: black;
+}
+.eval{
+    width: 40px;
+    height: 20px;
+    background-color: white;
+    margin: 0;
+    transition: transform ease-in 0.3ms;
+    border-radius: 20px;
+     position: absolute;
+     left: 5px;
+     top: 45px;
+}
+.eval:hover{
+    cursor: pointer;
+    transform: scale(1.08);
+    background-color: darkred;
+    color: white;
+   
+    
+}
+
+.search{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+.date{
+    margin-bottom: 50px;
+    margin-left: 10px;
+    height: 50px;
+    border-radius: 10px;
+    border: solid 1px;
+}
+
+.paragraph{
+    font-size: 18px;
+    margin: 20px;
+    width: 400px;
+    line-height: 1.6;
+}
+
+.evalContent{
+    display: flex;
+    flex-direction: column;
+    align-items: first baseline;
+    justify-content: first baseline;
+}
+.evalForm{
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.update,.delete{
+    background-color: white;
+    border-radius: 3px;
+    height: 40px;
+    margin-left: 5px
+
+}
+
+.update:hover{
+    background-color: green;
+    color: white;
+}
+
+.delete:hover{
+    background-color: red;
+    color: white;
+}
