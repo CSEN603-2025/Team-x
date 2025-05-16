@@ -1,56 +1,73 @@
 // WorkshopEdit.jsx
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import './Form.css';
+import styles from './Form.module.css';
 
 function WorkshopEdit() {
   const [form, setForm] = useState(null);
-  const { id } = useParams();
-  const navigate = useNavigate();
+
+  // Simulated prop or predefined "workshop to edit"
+  const workshopToEdit = {
+    id: '1',
+    name: 'Intro to React',
+    description: 'Learn the basics of React.js',
+    speakerBio: 'John Doe is a senior developer at TechCorp',
+    agenda: 'JSX, components, props, state, hooks',
+    startDateTime: '2025-05-20T10:00',
+    endDateTime: '2025-05-20T12:00',
+  };
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/workshops/${id}`)
-      .then(res => {
-        const w = res.data;
-        setForm({
-          ...w,
-          startDateTime: new Date(w.startDateTime).toISOString().slice(0, 16),
-          endDateTime: new Date(w.endDateTime).toISOString().slice(0, 16),
-        });
-      });
-  }, [id]);
+    // Load the workshop data into form state
+    setForm(workshopToEdit);
+  }, []);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    await axios.put(`http://localhost:3000/api/workshops/${id}`, form);
-    navigate('/');
+    console.log('Updated Workshop:', form);
+    alert('Workshop updated (frontend only)!');
   };
 
-  if (!form) return <p>Loading...</p>;
+  if (!form) return <p>Loading form...</p>;
 
   return (
-    <form className="form-container" onSubmit={handleSubmit}>
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
       <h2>Edit Workshop</h2>
       {['name', 'description', 'speakerBio', 'agenda'].map(field => (
-        <div key={field} className="form-group">
+        <div key={field} className={styles.formGroup}>
           <label>{field}</label>
-          <input name={field} value={form[field]} onChange={handleChange} required />
+          <input
+            name={field}
+            value={form[field]}
+            onChange={handleChange}
+            required
+          />
         </div>
       ))}
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>Start Date & Time</label>
-        <input type="datetime-local" name="startDateTime" value={form.startDateTime} onChange={handleChange} required />
+        <input
+          type="datetime-local"
+          name="startDateTime"
+          value={form.startDateTime}
+          onChange={handleChange}
+          required
+        />
       </div>
-      <div className="form-group">
+      <div className={styles.formGroup}>
         <label>End Date & Time</label>
-        <input type="datetime-local" name="endDateTime" value={form.endDateTime} onChange={handleChange} required />
+        <input
+          type="datetime-local"
+          name="endDateTime"
+          value={form.endDateTime}
+          onChange={handleChange}
+          required
+        />
       </div>
-      <button type="submit" className="submit-btn">Update</button>
+      <button type="submit" className={styles.submitBtn}>Update</button>
     </form>
   );
 }

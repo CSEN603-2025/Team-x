@@ -11,9 +11,16 @@
   padding-bottom: 50px; /* So bottom content isn’t cut off */
 }
 
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 70px;
+}
 
 .incoming {
-  background-color: #222;
+  background-color: #ffffff;
   padding: 20px;
   border: 2px solid orange;
   border-radius: 12px;

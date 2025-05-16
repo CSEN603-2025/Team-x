@@ -55,12 +55,20 @@
 }
 
 .section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 500px;
   background-color: white;
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
+.button{
+  width: 140px;
+  height: 60px;
+}
 .filterControls {
   display: flex;
   flex-direction: column;
@@ -71,7 +79,7 @@
   padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
-  width: 100%;
+  width: 180px;
 }
 
 .textarea {
@@ -91,6 +99,8 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+  width:120px;
+  height: 50px;
 }
 
 .button:hover {
@@ -308,6 +318,9 @@
   cursor: pointer;
   transition: background-color 0.2s;
 }
+.viewButton{
+  width: 150px;
+}
 
 .button:hover,
 .headerBtn:hover,
@@ -381,6 +394,7 @@
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  width: 500px;
 }
 
 .applicationsOverview {

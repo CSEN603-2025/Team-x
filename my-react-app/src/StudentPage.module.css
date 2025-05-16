@@ -91,11 +91,11 @@ padding: 0px;
     background-color: black;
 }
 .eval{
-    width: 40px;
-    height: 20px;
+    padding: 2px 10px;
+    width: 50px;
     background-color: white;
     margin: 0;
-    transition: transform ease-in 0.3ms;
+   
     border-radius: 20px;
      position: absolute;
      left: 5px;
@@ -103,7 +103,7 @@ padding: 0px;
 }
 .eval:hover{
     cursor: pointer;
-    transform: scale(1.08);
+    
     background-color: darkred;
     color: white;
    

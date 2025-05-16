@@ -312,12 +312,16 @@ const filteredInternships = internships.filter((internship) => {
         </div>
       </div>
     ))}
+
+    {render==='' &&
       <div>
       <YouTubeVideoPlayer
         videoId="cUDfKP2cDbs" // Replace with your actual YouTube video ID
         title="Your Internship Guide"
       />
     </div>
+    }
+      
 
      {render === 'internships' && (
   <div className={styles.searchContainer}>
@@ -328,7 +332,7 @@ const filteredInternships = internships.filter((internship) => {
         type="search"
         placeholder="Search your internships"
       />
-      <select
+      <select style={{marginTop:-40}}
         value={statusFilter}
         onChange={(e) => setStatusFilter(e.target.value)}
       >

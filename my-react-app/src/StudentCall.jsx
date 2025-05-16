@@ -181,21 +181,16 @@ const handleCheckOnline = () => {
   };
 
   return (
-    
+     
     <div className={styles.callContainer}>
       
       <div className={styles.actionPanel}>
         
   <div className={styles.row}>
     
-<div style={{ padding: '20px', backgroundColor: '#1c1c1c', color: 'white', borderRadius: '8px', marginBottom: '30px' }}>
+<div className={styles.container} >
   <h2 style={{ marginBottom: '10px' }}>My Appointments</h2>
-  <div style={{
-    display: 'flex',
-    overflowX: 'auto',
-    gap: '15px',
-    paddingBottom: '10px'
-  }}>
+  <div >
     {mockAppointments.map((appointment) => (
       <div key={appointment.id} style={{
         minWidth: '250px',

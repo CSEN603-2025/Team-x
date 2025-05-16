@@ -209,8 +209,8 @@ function ScadOffice() {
         {selectedReport && (
           <div className={styles.detailCard}>
             <h2>Report Details</h2>
-            <div className={styles.scrollableEvaluation}>
-  <div className={styles.details}>
+            <div >
+  <div className={styles.details} >
     <p><strong>Student:</strong> {students.find(s => s.id === selectedReport.studentId)?.name}</p>
     <p><strong>Company:</strong> {selectedReport.company}</p>
     <p><strong>Main Supervisor:</strong> {selectedReport.supervisor}</p>

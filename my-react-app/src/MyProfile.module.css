@@ -54,7 +54,7 @@
   margin-bottom: 20px;
 }
 
-textarea, select, input[type="text"] {
+.textarea, .input, .select {
   width: 100%;
   padding: 8px;
   font-size: 14px;
@@ -65,7 +65,7 @@ textarea, select, input[type="text"] {
   margin-bottom: 10px;
 }
 
-button {
+.primaryButton {
   background-color: #ecf1f6;
   color: black;
   padding: 10px 16px;
@@ -78,23 +78,30 @@ button {
   margin: 10px auto;
 }
 
-button:hover {
+.primaryButton:hover {
   background-color: #011a35;
   color: white;
 }
 
-ul {
+.list {
   list-style-type: disc;
   padding-left: 20px;
   margin-top: 10px;
 }
 
-li {
+.listItem {
   margin-bottom: 8px;
 }
 
-h1, h2, h4 {
+.centeredHeader {
   text-align: center;
   font-size: 18px;
   margin-bottom: 15px;
+}
+
+.internshipCard {
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
 }

@@ -58,7 +58,7 @@ function handleSubmit() {
 }
 
   return (
-   <><header className={styles.header}>
+   <div className={styles.mainContainer}><header className={styles.header}>
       <img src={GUCLogo} alt="GUC Logo" className={styles.siteLogo} />
     </header>
         <div className={styles.formCard}>
@@ -152,7 +152,7 @@ function handleSubmit() {
 
 
         </div>
-      </>
+      </div>
     
   );}
 

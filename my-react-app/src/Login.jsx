@@ -64,14 +64,17 @@ function Login(){
     navigate('/CompanyRegister');
   }
     return(
+      <div className={styles.Wrapper}>
         <div className={styles.mainContainer}>
             <div className={styles.titleContainer}><p>Username</p> <p className={styles.error}>{userError}</p></div>
-            <input onChange={changeUsername} type="text"></input>
+            <input className={styles.inputt} onChange={changeUsername} type="text"></input>
             <div className={styles.titleContainer}><p>Password</p> <p className={styles.error}>{passError}</p></div>
-            <input onChange={changePassword} type="text"></input>
+            <input className={styles.inputt} onChange={changePassword} type="text"></input>
             <button onClick={loginHandle}>Login</button>
             <button onClick={()=>register()}>Register as a Company</button>
         </div>
+      </div>
+        
         
     );
 }

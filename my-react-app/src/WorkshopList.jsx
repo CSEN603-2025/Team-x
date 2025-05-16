@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default function WorkshopList({ workshops, onEdit, onDelete }) {
   if (workshops.length === 0) {
     return <p>No workshops yet.</p>;
