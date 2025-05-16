@@ -4,9 +4,10 @@ import whiteBell from './assets/bell.png'
 import blackBell from './assets/bell-ring.png'
 import viewOff from './assets/profile.png'
 import viewOn from './assets/view.png'
+import { useNavigate } from 'react-router-dom'
 
 function StudentHeader(){
-    
+    const navigate = useNavigate();
     const [notification,setNotification]=useState(false);
     const [profileView, setProfileView]= useState(false);
 
@@ -19,6 +20,10 @@ function StudentHeader(){
     if (!prevState) setProfileView(false); 
     return !prevState;
   });
+}
+
+function myProfile(){
+  navigate('/MyProfile');
 }
 
 function profileViewToggle() {
@@ -53,7 +58,7 @@ function profileViewToggle() {
 
    
     return(
-        <div className={styles.mainContainer}> <p style={{fontSize:20, fontWeight:'bolder',margin:0}}>Welcome, {studentInfo.name}</p>
+        <div className={styles.mainContainer}> <p onClick={()=>{myProfile()}} style={{fontSize:20, fontWeight:'bolder',margin:0}}>Welcome, {studentInfo.name}</p>
        {studentInfo.proStatus && (
         <p>
           <span className={styles.proText}>PRO+</span>

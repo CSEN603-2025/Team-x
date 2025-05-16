@@ -1,6 +1,6 @@
 // TeslaInfo.jsx
 import React from 'react';
-import './TeslaInfo.css';
+import Styles from './TeslaInfo.module.css';
 
 function TeslaInfo() {
   return (

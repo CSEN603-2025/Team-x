@@ -1,8 +1,15 @@
 import { useState } from 'react'
 import styles from './StudentPage.module.css'
 import jsPDF from 'jspdf';
+import { useNavigate } from 'react-router-dom';
+// If it's one level up
+import YouTubeVideoPlayer from './Components/YouTubeVideoPlayer';
+
+;
+
 
 function StudentPage() {
+ const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
     const [render, setRender] = useState('');
     const [statusFilter, setStatusFilter] = useState('All');
@@ -238,6 +245,18 @@ function handleDelete(title) {
   "Cloud"
   ]
 
+  function Video(){
+    navigate("/Zoom");
+  }
+   function Assessment(){
+    navigate("/Assessment");
+  }
+   function Work(){
+    navigate("/Works");
+  }
+  function Comp(){
+    navigate("/comp");
+  }
     function showCourses(){
       setRender('courses');
     }
@@ -272,6 +291,11 @@ const filteredInternships = internships.filter((internship) => {
         <p className={styles.selector} onClick={showCourses}>Courses</p>
         <p className={styles.selector} onClick={showInternships}>Internships</p>
         <p className={styles.selector} onClick={showReport}>My report</p>
+          <p className={styles.selector} onClick={()=>Video()}>My Appointments</p>
+        <p className={styles.selector} onClick={()=>Assessment()}>Assessments</p>
+        <p className={styles.selector} onClick={()=>Work()}>Workshops</p>
+         <p className={styles.selector} onClick={()=>Comp()}>Companies</p>
+
       </div>
 
       {render === 'courses' && csCourses.map((course, index) => (
@@ -288,7 +312,12 @@ const filteredInternships = internships.filter((internship) => {
         </div>
       </div>
     ))}
-      
+      <div>
+      <YouTubeVideoPlayer
+        videoId="cUDfKP2cDbs" // Replace with your actual YouTube video ID
+        title="Your Internship Guide"
+      />
+    </div>
 
      {render === 'internships' && (
   <div className={styles.searchContainer}>

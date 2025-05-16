@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './JobPostManager.module.css';
 import GUCLogo from './assets/GUC-logo.png';
-import CompanyRegister from './companyregister';
+
 function JobPostManager() {
   const [posts, setPosts] = useState([
     {

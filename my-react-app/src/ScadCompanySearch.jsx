@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import styles from './scadCompanySearch.module.css'
-
+import { useNavigate } from 'react-router-dom';
 
 function ScadCompanySearch() {
     const [searchQuery, setSearchQuery] = useState('')
     const [filter,setFilter] = useState('');
-
+ const navigate = useNavigate();
     const internshipApplicants = [
         // Graphic Design
+        { name: "Tesla", applyDate: "2025-05-01", major: "Electric Cars" },
         { name: "Pentagram", applyDate: "2025-05-01", major: "Graphic Design" },
         { name: "Landor & Fitch", applyDate: "2025-05-11", major: "Graphic Design" },
         { name: "Wolff Olins", applyDate: "2025-05-12", major: "Graphic Design" },
@@ -64,6 +65,9 @@ function ScadCompanySearch() {
       function handleChange(e){
         setFilter(e.target.value)
       }
+      function Info(){
+        navigate ("/info");
+      }
       
   return(
     <div className={styles.mainContainer}>
@@ -88,7 +92,7 @@ function ScadCompanySearch() {
         <div className={styles.companyContainer}>
         {filteredCompanies.map((company,index)=>(
             <div className={styles.company}>
-                <p className={styles.companyName}>{company.name}</p>
+                <p onClick={()=>Info()} className={styles.companyName}>{company.name} </p>
                 <p className={styles.applyDate}>{company.applyDate}</p>
             </div>
         ))}

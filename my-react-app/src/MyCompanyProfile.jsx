@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './MyCompanyProfile.module.css';
+import { useNavigate } from 'react-router-dom'; 
 
 const detailedApplications = {
   'Ali Mohamed': {
@@ -117,7 +118,7 @@ const handleDeleteApplication = (internshipId, applicantName) => {
   });
   setInternships(updatedInternships);
 };
-
+ const navigate = useNavigate(); 
 const handleEditApplication = (app) => {
   setSelectedApplication({
     ...app,
@@ -145,6 +146,10 @@ const handleAddNewIntern = (internshipId) => {
   setInternships(updatedInternships);
 };
 
+function CompProfile (){
+
+  navigate("/JobPost")
+}
 
   const handleStatusChange = (newStatus) => {
     if (!selectedApplication) return;
@@ -221,7 +226,7 @@ const handleAddNewIntern = (internshipId) => {
   <header className={styles.header}>
     <h1 className={styles.heading}>Company Dashboard</h1>
     <div className={styles.headerButtons}>
-      <button className={styles.headerBtn}>Settings</button>
+      <button className={styles.headerBtn} onClick={()=>{CompProfile()}}>Edit My Internships</button>
       <button className={styles.headerBtn}>Log Out</button>
     </div>
   </header>

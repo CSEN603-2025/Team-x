@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './ScadOffice.module.css';
 
 
-import YouTubeVideoPlayer from './Components/YouTubeVideoPlayer';
+
   
    
 

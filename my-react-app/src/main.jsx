@@ -1,22 +1,12 @@
-import { createRoot } from 'react-dom/client'
-import './index.css'
-<<<<<<< HEAD
-import StudentPage from './StudentPage.jsx'
-import StudentHeader from './StudentHeader.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import StudentCall from './StudentCall.jsx';
+import ScadCompanySearch from './ScadCompanySearch.jsx';
 
-createRoot(document.getElementById('root')).render(
-    <>
-        <StudentHeader/>
-        <StudentPage/>
-
-    </>
-    
-=======
-import TeslaInfo from './TeslaInfo.jsx'
-
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <TeslaInfo />
-  </StrictMode>,
->>>>>>> origin/my-new-branch
-)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);

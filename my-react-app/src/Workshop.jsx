@@ -1,5 +1,8 @@
 import { useState } from "react";
 import styles from './Workshop.module.css'
+import { Navigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 
 const workshopsData = [
   {
@@ -46,9 +49,10 @@ function Workshop() {
   const toggleWorkshop = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
-
+ const navigate = useNavigate();
   const handleJoin = (title) => {
     alert(`You joined the workshop: ${title}`);
+    navigate("/WorksRecord");
   };
 
   return (
