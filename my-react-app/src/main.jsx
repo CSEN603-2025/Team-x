@@ -1,17 +1,10 @@
-
+import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import JobPostManager from './JobPostManager.jsx'
-import CompanyRegister from './companyregister.jsx'
-import MyProfile from './MyProfile.jsx'
-import MyCompanyProfile from './MyCompanyProfile.jsx'
-import ScadOffice from './ScadOffice.jsx'
-import StudentCall from './StudentCall.jsx'
-
 
 createRoot(document.getElementById('root')).render(
-
-    <StudentCall />
-
+  <StrictMode>
+    <App />
+  </StrictMode>,
 )
