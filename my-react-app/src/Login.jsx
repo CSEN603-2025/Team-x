@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from './Login.module.css'
 import { useNavigate } from 'react-router-dom'; // ← import this
-
+import GUCLogo from './assets/GUC-logo.png';
 
 
 function Login(){
@@ -64,7 +64,14 @@ function Login(){
     navigate('/CompanyRegister');
   }
     return(
+      <section >
+      <div><h1 className={styles.h1}>Welcome To Internship Haven</h1>
+      <h1 >Login here</h1>
+         <header className={styles.header}>
+            <img src={GUCLogo} alt="GUC Logo" className={styles.siteLogo} />
+          </header>
       <div className={styles.Wrapper}>
+        
         <div className={styles.mainContainer}>
             <div className={styles.titleContainer}><p>Username</p> <p className={styles.error}>{userError}</p></div>
             <input className={styles.inputt} onChange={changeUsername} type="text"></input>
@@ -74,8 +81,8 @@ function Login(){
             <button onClick={()=>register()}>Register as a Company</button>
         </div>
       </div>
-        
-        
+        </div>
+        </section>
     );
 }
 

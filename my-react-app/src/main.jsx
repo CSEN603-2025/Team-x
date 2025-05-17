@@ -6,10 +6,10 @@ import App from './App';
 import StudentCall from './StudentCall.jsx';
 import ScadCompanySearch from './ScadCompanySearch.jsx';
 import WorkshopEdit from './WorkshopEdit.jsx';
-import WorkshopForm from './WorkshopForm.jsx';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <WorkshopForm/>
+    <App />
   </BrowserRouter>
 );
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ScadOffice.module.css';
-
+import { useNavigate } from 'react-router-dom';
 
 
   
@@ -82,6 +82,11 @@ function ScadOffice() {
     ));
     setClarificationText(''); // Clear the input after submission
   };
+    const navigate = useNavigate(); 
+  function Edit(){
+    navigate("/edit")
+
+  }
 
  return (
   <div className={styles.container}>
@@ -90,6 +95,7 @@ function ScadOffice() {
       <div className={styles.headerContent}>
         <h1 className={styles.title}>SCAD Office Dashboard</h1>
         <div className={styles.headerButtons}>
+          <button className={styles.headerBtn} onClick={()=>Edit()}>Workshops</button>
           <button className={styles.headerBtn}>Settings</button>
           <button className={styles.headerBtn}>Log Out</button>
         </div>

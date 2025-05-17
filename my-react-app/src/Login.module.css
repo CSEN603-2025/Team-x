@@ -13,6 +13,7 @@
     align-items: first baseline;
     justify-content: center;
     width: 400px;
+    background-color: #ffffff;
 }
 
 p{
@@ -60,4 +61,24 @@ button:hover{
     color: red;
     font-size: 16px;
 
+}
+.h1{
+font-size: 48px;
+  font-weight: 800;
+  color: #011a35;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 0 #e0e7ef;
+
+}
+.header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.siteLogo {
+  height: 50px;
+  width: auto;
 }

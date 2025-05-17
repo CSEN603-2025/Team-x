@@ -13,6 +13,7 @@ import Workshop from "./Workshop.jsx"
 import WorkshopRecording from './WorkshopRecording.jsx';
 import ScadCompanySearch from './ScadCompanySearch.jsx';
 import TeslaInfo from './TeslaInfo.jsx';
+import WorkshopManager from './WorkshopEdit.jsx';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/WorksRecord" element={<WorkshopRecording />} />
                  <Route path="/Comp" element={<ScadCompanySearch />} />
                                   <Route path="/info" element={<TeslaInfo />} />
+                           <Route path="/edit" element={<WorkshopManager />} />
     </Routes>
   );
 }
